@@ -3,7 +3,19 @@ package ru.stqa.pft.sandbox;
 public class MyFirstProgram {
 
   public static void main(String[] args) {
-    System.out.println("Hellow world");
+    String somebody = "world!";
+    System.out.println("Hello, " + somebody);
+
+//    Переменные
+//    int - целые числа
+//    double - числа с плавающией точкой
+//    String - строковые переменные
+
+    double l = 8.0;
+    double s = l * l;
+    System.out.println("Площадь квадрата со стороной " + l + "=" + (l * l));
+    System.out.println("Площадь квадрата со стороной " + l + "=" + s);
+
   }
 
 }

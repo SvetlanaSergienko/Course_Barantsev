@@ -10,6 +10,8 @@ public class Mathematics {
 
 //    sout - сокращенное сочетание клавишь System.out.println
 
+//    Математика
+
     System.out.println(2 + 2);
     System.out.println(2 * 2);
     System.out.println(2 / 2);
@@ -32,6 +34,12 @@ public class Mathematics {
 //    тк скобок нет то преобразует в строку
     System.out.println("2+2=" + 2 + 2);
     System.out.println(("2+2=" + (2 + 2)));
+
+//    Переменные
+    int l = 5;
+    int s = l * l;
+    System.out.println("Площадь квадрата со стороной " + l + "=" + (l * l));
+    System.out.println("Площадь квадрата со стороной " + l + "=" + s);
   }
 
 }
