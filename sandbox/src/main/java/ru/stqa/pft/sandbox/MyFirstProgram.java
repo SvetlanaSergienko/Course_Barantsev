@@ -7,12 +7,14 @@ public class MyFirstProgram {
     hello("user");
     hello("Alexsei");
 
-    double len = 5;
-    System.out.println("Площадь квадрата со стороной " + len + "=" + area(len));
+    Square s = new Square();
+    s.l = 5;
+    System.out.println("Площадь квадрата со стороной " + s.l + "=" + area(s));
 
-    double a = 4;
-    double b = 6;
-    System.out.println("Площадь прямоугольника со стронами " + a + " и " + b + " = " + area(a,b));
+    Rectangle r = new Rectangle();
+    r.a = 4;
+    r.b = 6;
+    System.out.println("Площадь прямоугольника со стронами " + r.a + " и " + r.b + " = " + area(r));
 
   }
 
@@ -21,12 +23,12 @@ public class MyFirstProgram {
   }
 
 //  функция формулы площади квадрата
-  public static double area(double l){
-    return l*l;
+  public static double area(Square s){
+    return s.l * s.l;
   }
 //  функция формулы площади прямоугольника
-  public static double area (double a, double b){
-    return a*b;
+  public static double area (Rectangle r){
+    return r.a * r.b;
   }
 
 }
