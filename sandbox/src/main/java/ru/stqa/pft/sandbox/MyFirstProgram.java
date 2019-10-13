@@ -7,15 +7,12 @@ public class MyFirstProgram {
     hello("user");
     hello("Alexsei");
 
-//  Создание объекта тип s который берет переменные из класса Square
-    Square s = new Square();
-    s.l = 5;
+//  Создание объекта тип s который берет переменные из класса Square. Значение подставляет конструктором.
+    Square s = new Square(5);
     System.out.println("Площадь квадрата со стороной " + s.l + "=" + area(s));
 
-//  Создание объекта тип r который берет переменные из класса Rectangle
-    Rectangle r = new Rectangle();
-    r.a = 4;
-    r.b = 6;
+//  Создание объекта тип r который берет переменные из класса Rectangle. Значение подставляет конструктором.
+    Rectangle r = new Rectangle(4,6);
     System.out.println("Площадь прямоугольника со стронами " + r.a + " и " + r.b + " = " + area(r));
 
   }
