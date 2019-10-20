@@ -1,90 +1,66 @@
 package ru.stqa.pft.sandbox;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import javax.xml.crypto.Data;
 import java.time.*;
-import java.util.Calendar;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class DateTime {
-  public static void main (String[] args) throws Exception{
 
-//    Вывести текущею дату и время
-//    Date date = new Date();
-//    Вывести 1 января 1970 - начала эпохи Unix - Date(0) те 0 секунд с той даты
+  public static void main(String[] args) throws InterruptedException {
+
+//      Вывести текущую дату и время
     Date date = new Date();
     System.out.println(date);
 
-//    календарь приватный, но можем получить содержимое
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(date);
-//    Вывести дату и время + 1 неделю
-    calendar.add(Calendar.WEEK_OF_MONTH,1);
-    System.out.println(calendar.getTime());
+//     1212121212121L - секунды от 01.01.1970
+    Date date2 = new Date(1212121212121L);
+    System.out.println(date2);
 
-//    Вывести дату в определенном формате. DateFormat так же приватный. но можем использовать
-    DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
-    System.out.println(dateFormat.format(calendar.getTime()));
+    Thread.sleep(2000);//таймаут - приостановим работу программы на 2 секунды
 
-//    Вывести дату в определенном формате
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    System.out.println(simpleDateFormat.format(calendar.getTime()));
+//      Сравнение 2х дат
+    System.out.println((date.getTime() > date2.getTime()) ?
+            "date позже date2" : "date раньше date2");
 
-//    Что бы распарсить формат в стандартный Date (например 20/10/2019)
-    Date newDate = simpleDateFormat.parse("20/10/2019");
-    System.out.println(newDate);
+//      Метод before() возвращает boolean проверяет, была ли date раньше той, которую мы передаем в качестве аргумента date2
+//      Метод after возвращает boolean  date больше аргумерта date2
+//      Метод equals возвращает boolean  даты равны до милесекунд
+    System.out.println(date.before(date2));
+    System.out.println(date.after(date2));
+    System.out.println(date.equals(date2));
 
-//    Часовой пояс омска (еще подумать нужно)
-//    ZoneId Omsk = ZoneId.of("UTC+6");
-//    ZonedDateTime OmskTime = ZonedDateTime.now(Omsk);
-//    System.out.println(OmskTime);
-//
-//    LocalDate today = OmskTime.toLocalDate();
-//    LocalTime tenPM = LocalTime.of(22,0);
-//    ZonedDateTime tenPMToday = ZonedDateTime.of(today,tenPM,Omsk);
-//    System.out.println(today);
-//    System.out.println(tenPMToday);
+    DateTime dateNew = new DateTime();
+    int differenceHours = 3;
 
-//    20.10.19 18:31:54 + 20 секунд или date - текущая дата и время
-//Предусловие
-    System.out.println(date);
-    Calendar newcalendar = Calendar.getInstance();
-    newcalendar.setTime(date);
-    newcalendar.add(Calendar.SECOND, 20);
-    System.out.println(newcalendar.getTime());
 
-//    Черновик
-//    Duration duration = Duration.between(date, newcalendar);
-//    long diff = Math.abs(duration.toMinutes());
-//    System.out.println(diff);
-//
-//    long diff = ChronoUnit.SECONDS.between(now, tenSecondsLater);
-//    assertEquals(diff, 10);
-//
-//    long days = Period.between(date, newDate).getDays();
-//    System.out.println("No of days: " + days);
-//    assertEquals(diff, 20);
-//
-//    int daysDiff;
-//    daysDiff = newcalendar.getTime() - date.getTime();
-//
-//    int TimeUnit = 20;
-//
-//    public long getDays(Date date, Date newcalendar)
-//    {
-//      long l = newcalendar.getTime() - date.getTime();
-//      return TimeUnit.DAYS.convert(l, TimeUnit.MILLISECONDS);
-//    }
-//
-//    Days diff = Days.daysBetween(date, newcalendar);
-//    System.out.println(diff.getDays());
-//
-//    boolean b;
-//
-//    if (date.getTime() < newcalendar.getTime()) {
-//      b = true;
-//    } else b = false;
-//    System.out.println(b);
+    // ZonedDateTime
+    LocalDate ld = LocalDate.of( 2017 , Month.MARCH , 12 ) ;
+    LocalTime lt = LocalTime.of( 1 , 0 ) ;
+    ZoneId z = ZoneId.of("Europe/Moscow");
+    ZonedDateTime zdt = ZonedDateTime.of( ld , lt , z ) ;
+    ZonedDateTime zdtOneHourLater = zdt.plusHours( 1 ) ;
 
-  }
+    System.out.println( "zdt: " + zdt ) ;
+    System.out.println( "zdtOneHourLater: " + zdtOneHourLater ) ;
+    System.out.println( "1 час плюс 3 часа утра? летнее время Daylight Saving Time (DST)" ) ;
+    System.out.println( "" ) ;
+
+    Instant instant = zdt.toInstant() ;  // Отрегулируйте в UTC.
+    Instant instantOneHourLater = instant.plus( 1 , ChronoUnit.HOURS ) ;
+
+    System.out.println( "instant: " + instant ) ;
+    System.out.println( "instantOneHourLater: " + instantOneHourLater ) ;
+    System.out.println( "Instant всегда в UTC. Добавление часа к 1 AM приводит к 2 AM каждый раз") ;
+
+//    public void addToDateTimeHours (String variableName, String dateValue,int differenceHours){
+//      DateTime dateSrc = DateTime.parse(TestVariables.replaceAllVariables(dateValue), DEFAULT_DATE_TIME_FORMATTER);
+//      DateTime newDate = dateSrc.plusHours(differenceHours);
+//      String newDateText = newDate.toString(DEFAULT_DATE_TIME_FORMATTER);
+//      TestVariables.saveVariable(variableName, newDateText);
+
+
+    }
+
+
 }
