@@ -53,14 +53,5 @@ public class DateTime {
     System.out.println( "instantOneHourLater: " + instantOneHourLater ) ;
     System.out.println( "Instant всегда в UTC. Добавление часа к 1 AM приводит к 2 AM каждый раз") ;
 
-//    public void addToDateTimeHours (String variableName, String dateValue,int differenceHours){
-//      DateTime dateSrc = DateTime.parse(TestVariables.replaceAllVariables(dateValue), DEFAULT_DATE_TIME_FORMATTER);
-//      DateTime newDate = dateSrc.plusHours(differenceHours);
-//      String newDateText = newDate.toString(DEFAULT_DATE_TIME_FORMATTER);
-//      TestVariables.saveVariable(variableName, newDateText);
-
-
     }
-
-
 }
