@@ -13,6 +13,7 @@ public class Point {
 // public double p1=x2-x1;
 // public double p2=y2-y1;
 
+
 // public double x1 = 5;
 // public double y1 = 4;
 //
@@ -22,8 +23,19 @@ public class Point {
 // public double p1=x2-x1;
 // public double p2=y2-y1;
 
+  // возвращает строку с описанием точки
+  public String toString() {
+    return "("+x1+";"+y1+")";
+  }
+
+  // выводит на экран описание точки
+  public void printPoint() {
+    System.out.print(this.toString());
+  }
+
+
     //  Конструктор
-  public void distance(double x1, double y1, double x2, double y2){
+  public void medistance(double x1, double y1, double x2, double y2){
       this.x1 = x1;
       this.y1 = y1;
       this.x2 = x2;
@@ -39,15 +51,20 @@ public class Point {
     }
 
   // конструктор, создающий точку с указанными координатами
-  public void Point2(double a, double b){
-    this.x2 = a;
-    this.y2 = b;
+  public void Point2(double x2, double y2){
+    this.x2 = x2;
+    this.y2 = y2;
+  }
+
+  // метод вычисляющий расстояние между точками
+  public double length(java.awt.Point p) {
+    return Math.sqrt( Math.pow(p.x-x1,2) + Math.pow(p.y-y1,2) );
   }
 
 
-    //  метод
-    public void area() {
-     Math.sqrt((this.x2 - this.x1) * (this.x2 - this.x1) + (this.y2 - this.y1) * (this.y2 - this.y1));
+//   метод (рабочий) вычисляет расстояние между точками
+    public static double mydistance(double p1, double p2) {
+    return Math.sqrt(p1 * p1 + p2 * p2);
     }
 
   }
