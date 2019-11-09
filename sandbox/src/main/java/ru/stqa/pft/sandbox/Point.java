@@ -10,16 +10,16 @@ public class Point {
   public double x2;
   public double y2;
 
-// public double p1=x2-x1;
-// public double p2=y2-y1;
+  public Point(double x1, double y1) {
+    this.x1 = x1;
+    this.y1 = y1;
+  }
 
+  public Pointtwo (double x2, double y2) {
+    this.x2 = x2;
+    this.y2 = y2;
+  }
 
-// public double x1 = 5;
-// public double y1 = 4;
-//
-// public double x2 = 9;
-// public double y2 = 7;
-//
 // public double p1=x2-x1;
 // public double p2=y2-y1;
 
@@ -40,21 +40,20 @@ public class Point {
       this.y1 = y1;
       this.x2 = x2;
       this.y2 = y2;
-
-
     }
 
     // конструктор, создающий точку с указанными координатами
-    public void Point1(double x1, double y1){
-      this.x1 = x1;
-      this.y1 = y1;
-    }
+//    public Point1(double x1, double y1){
+//      this.x1 = x1;
+//      this.y1 = y1;
+//      return;
+//    }
 
   // конструктор, создающий точку с указанными координатами
-  public void Point2(double x2, double y2){
-    this.x2 = x2;
-    this.y2 = y2;
-  }
+//  public void Point2(double x2, double y2){
+//    this.x2 = x2;
+//    this.y2 = y2;
+//  }
 
   // метод вычисляющий расстояние между точками
   public double length(java.awt.Point p) {
@@ -63,9 +62,14 @@ public class Point {
 
 
 //   метод (рабочий) вычисляет расстояние между точками
-    public static double mydistance(double p1, double p2) {
-    return Math.sqrt(p1 * p1 + p2 * p2);
+    public static double mydistance(double a1, double b2) {
+    return Math.sqrt(a1 * a1 + b2 * b2);
     }
+
+  //   метод вычисляет расстояние между точками
+  public static double mytwodistance(Point p1, Point p2) {
+    return Math.sqrt(Math.pow(p2.x2-p1.x1,2)+Math.pow(p2.y2-p1.y1,2));
+  }
 
   }
 
