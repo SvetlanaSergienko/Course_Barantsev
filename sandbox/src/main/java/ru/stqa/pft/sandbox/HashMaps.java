@@ -70,7 +70,7 @@ public class HashMaps {
 
 
 //    Пример с работы
-//    /**
+//       /**
 //     * Проверка отсутствия значения поля в ответе на последний отправленный запрос
 //     * Ожидаемое значение может включать в себя строки, мат.выражения и имена переменных
 //     *
@@ -78,39 +78,40 @@ public class HashMaps {
 //     */
 //    @То("^ответ сервиса на последний отправленный запрос не содержит следующее значение поля:$")
 //    public void checkIfFieldValuesAreAbsent(Map<String, String> datatable) {
-//      datatable.forEach(
-//              (path, expectedValue) -> {
-//                String resolvedPath = TestVariables.replaceAllVariables(path);
-//                String resolvedValue = TestVariables.replaceAllVariables(expectedValue);
-//                ArrayList fieldValues = getLastResponse().path(resolvedPath);
+//        datatable.forEach(
+//                (path, expectedValue) -> {
+//                    String resolvedPath = TestVariables.replaceAllVariables(path);
+//                    String resolvedValue = TestVariables.replaceAllVariables(expectedValue);
+//                    ArrayList fieldValues = getLastResponse().path(resolvedPath);
 //
-//                if (fieldValues.contains(resolvedValue)) {
-//                  HashMap<String, String> containerMSP = new HashMap<>();
-//                  containerMSP.put("web-acquiring", "FOBO_INT_162, FOBO_INT_163");
-//                  containerMSP.put("web-data-quality", "FOBO_INT_168");
-//                  containerMSP.put("web-delivery", "FOBO_INT_160");
-//                  containerMSP.put("web-fiscalization", "FOBO_INT_171");
-//                  containerMSP.put("web-logistic", "FOBO_INT_161");
-//                  containerMSP.put("web-loyalty", "FOBO_INT_169, FOBO_INT_170");
-//                  containerMSP.put("web-partner-purchase", "FOBO_INT_149");
-//                  containerMSP.put("web-products", "FOBO_INT_167");
-//                  containerMSP.put("web-promomedia", "FOBO_INT_158, FOBO_INT_159");
-//                  containerMSP.put("web-promotions", "FOBO_INT_150, FOBO_INT_151, FOBO_INT_152");
-//                  containerMSP.put("web-service-info", "FFOBO_INT_153");
+//                    HashMap<String, String> containerMSP = new HashMap<>();
+//                    containerMSP.put("web-acquiring", "FOBO_INT_162, FOBO_INT_163");
+//                    containerMSP.put("web-data-quality", "FOBO_INT_168");
+//                    containerMSP.put("web-delivery", "FOBO_INT_160");
+//                    containerMSP.put("web-fiscalization", "FOBO_INT_171");
+//                    containerMSP.put("web-logistic", "FOBO_INT_161");
+//                    containerMSP.put("web-loyalty", "FOBO_INT_169, FOBO_INT_170");
+//                    containerMSP.put("web-partner-purchase", "FOBO_INT_149");
+//                    containerMSP.put("web-products", "FOBO_INT_167");
+//                    containerMSP.put("web-promomedia", "FOBO_INT_158, FOBO_INT_159");
+//                    containerMSP.put("web-promotions", "FOBO_INT_150, FOBO_INT_151, FOBO_INT_152");
+//                    containerMSP.put("web-service-info", "FFOBO_INT_153");
 //
-//                  String s = String.format("Не рабочий контенер [" + resolvedValue + "] на MSP. Данный контенер содержит интеграцию с онлайн интерфейсами %s" + System.lineSeparator() + System.lineSeparator() + getLastResponse().path(resolvedPath), containerMSP.get(resolvedValue));
-//                  throw new BDDRuntimeException(s);
-//                } else {
-//                  Allure.addAttachment("attachment",
-//                          "Ожидаемое значение  [" + resolvedValue
-//                                  + "] поля '" + resolvedPath + "' " +
-//                                  " не содержится в списке фактических значений " + System.lineSeparator() + getLastResponse().path(resolvedPath)
-//                  );
+//                    if (fieldValues.contains(resolvedValue)&&containerMSP.containsKey(resolvedValue)) {
+//                            throw new BDDRuntimeException(String.format("Не рабочий контенер [" + resolvedValue + "] на MSP. Данный контенер содержит интеграцию с онлайн интерфейсами %s" + System.lineSeparator() + System.lineSeparator() + getLastResponse().path(resolvedPath), containerMSP.get(resolvedValue)));
+//                      }else if(fieldValues.contains(resolvedValue)){
+//                                throw new BDDRuntimeException("Ожидаемое значение  [" + resolvedValue + "] поля '" + resolvedPath + "' " + " содержится  в списке фактических значений " + System.lineSeparator() + System.lineSeparator() + getLastResponse().path(resolvedPath));
+//                         } else {
+//                                 Allure.addAttachment("attachment",
+//                                    "Ожидаемое значение  [" + resolvedValue
+//                                            + "] поля '" + resolvedPath + "' " +
+//                                            " не содержится в списке фактических значений " + System.lineSeparator() + getLastResponse().path(resolvedPath)
+//                            );
+//
+//                        }
 //
 //                }
-//
-//              }
-//      );
+//        );
 //
 //    }
 
