@@ -4,7 +4,7 @@ package out.course;
 
 public class Email2 {
   public static void main(String[] args) throws Exception {
-    EmailGet.getMail("cergienko@inbox.ru");
+    EmailGet.getMail("svetlanochka.sergiyenko@mail.ru");
   }
 
 }

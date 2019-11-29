@@ -16,24 +16,22 @@ public class EmailGet {
 
   public static void getMail(String recipient) throws Exception {
 
-    Properties properties = new Properties();
     System.out.println("Начало");
 
-//        Сервер мой = c6afe9be-f6fc-4791-b065-bf7277930008@mvideo.ru
-//        MAPI
-//        SMTP порт = 465
-//    Сервер исходящей почты (SMTP-сервер) ssl://smtp.inbox.ru
-//    Имя пользователя — vash_pomoshnik@mail.ru
-//    Порт SMTP : 465
-    properties.put("mail.smtp.host", "ssl://smtp.inbox.ru");
-//    properties.put("mail.smtp.socketFactory.port", "465");
-//        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-    properties.put("mail.smtp.auth", "true");
+    // Упомяните адрес SMTP-сервера. Ниже SMTP-сервер Gmail используется для отправки электронной почты
+    String host = "smtp.mail.ru";
+    // Получить системные свойства properties
+    Properties properties = System.getProperties();
+    // Настройка почтового сервера
+    properties.put("mail.smtp.host", "true");
+    properties.put("mail.smtp.host", host);
     properties.put("mail.smtp.port", "465");
+    properties.put("mail.smtp.auth", "true");
     properties.put("mail.transport.protocol", "smtp");
-//    properties.put("mail.smtps.host", "ssl://smtp.inbox.ru");
-//    properties.put("mail.smtps.auth", "true");
-//    properties.put("mail.smtp.sendpartial", "true");
+//    sll -протокол шифрования
+    properties.put("mail.smtp.ssl.enable", "true");
+    properties.put("mail.smtp.socketFactory.class",
+            "javax.net.ssl.SSLSocketFactory");
 
 //    через проперти(не удалось)
 //    final Properties properties = new Properties();
@@ -44,11 +42,11 @@ public class EmailGet {
 //    properties.load(EmailLesson.class.getClassLoader().getResourceAsStream("email.properties"));
 
     // идентификатор электронной почты получателя должен быть упомянут.
-    String to = "cergienko@inbox.ru";
-    String password = "Germagen1624";
+    String to = "svetlanochka.sergiyenko@mail.ru";
+    String password = "tango123";
 
     // идентификатор электронной почты отправителя должна быть указана
-    String from = "cergienko1@gmail.ru";
+    String from = "svetlanochka.sergiyenko@mail.ru";
 
 
     Session session = Session.getInstance(properties, new Authenticator() {
