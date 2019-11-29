@@ -10,7 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Email {
+public class SendGmail {
   public static void main(String[] args) throws MessagingException, IOException {
     // Mention the Recipient's email address
     String to = "***@gmail.com";
@@ -25,6 +25,7 @@ public class Email {
     properties.put("mail.smtp.host", host);
     properties.put("mail.smtp.port", "587");
     properties.put("mail.smtp.auth", "true");
+//  TLS -протокол шифрования
     properties.put("mail.smtp.starttls.enable", "true");
 
 

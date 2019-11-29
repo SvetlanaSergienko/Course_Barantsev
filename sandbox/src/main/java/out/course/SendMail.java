@@ -9,7 +9,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailSveta {
+public class SendMail {
   public static void main(String[] args) {
     // Укажите адрес электронной почты получателя
     String to = "***@mail.ru";
@@ -24,7 +24,11 @@ public class EmailSveta {
     properties.put("mail.smtp.host", host);
     properties.put("mail.smtp.port", "465");
     properties.put("mail.smtp.auth", "true");
-    properties.put("mail.smtp.starttls.enable", "true");
+    properties.put("mail.transport.protocol", "smtp");
+//    sll -протокол шифрования
+    properties.put("mail.smtp.ssl.enable", "true");
+    properties.put("mail.smtp.socketFactory.class",
+            "javax.net.ssl.SSLSocketFactory");
 
 
     // Получите объект Session .// и передайте имя пользователя и пароль
