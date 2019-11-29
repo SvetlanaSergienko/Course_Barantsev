@@ -42,11 +42,11 @@ public class EmailGet {
 //    properties.load(EmailLesson.class.getClassLoader().getResourceAsStream("email.properties"));
 
     // идентификатор электронной почты получателя должен быть упомянут.
-    String to = "svetlanochka.sergiyenko@mail.ru";
-    String password = "tango123";
+    String to = "***@mail.ru";
+    String password = "***";
 
     // идентификатор электронной почты отправителя должна быть указана
-    String from = "svetlanochka.sergiyenko@mail.ru";
+    String from = "***@mail.ru";
 
 
     Session session = Session.getInstance(properties, new Authenticator() {

@@ -20,8 +20,8 @@ public class TestMail {
     String subject = "Subject";
 //    String content = "Test";
     String smtpHost="smtp.mail.ru";
-    String address="svetlanochka.sergiyenko@mail.ru";
-    String login="svetlanochka.sergiyenko@mail.ru";
+    String address="***@mail.ru";
+    String login="***@mail.ru";
     String password="tango123";
     String smtpPort="995";
     String pop3Host="pop3.mail.ru";
