@@ -3,6 +3,9 @@ package out.course;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+// Не работающий пример. Перебор всех входящих с учетом вложения
+// http://ryakovlev.blogspot.com/2014/11/java_17.html
+
 public class MessageBean implements Serializable {
   private String subject;
   private String from;
