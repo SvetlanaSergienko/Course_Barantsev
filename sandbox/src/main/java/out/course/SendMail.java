@@ -32,7 +32,9 @@ public class SendMail {
 
 
     // Получите объект Session .// и передайте имя пользователя и пароль
-    Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+//    Session - класс, который определяет основные сессии почты.
+//    Чтобы передать значения в объект сессии, могут быть использованы Properties.
+     Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
       protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication("***@mail.ru", "***");
       }
@@ -41,6 +43,8 @@ public class SendMail {
     session.setDebug(true);
     try {
       // Создайте объект MimeMessage по умолчанию.
+//      Message - абстрактный класс, который представляет собой сообщения электронной почты.
+//      JavaMail реализует RFC822 и MIME стандарты обмена сообщениями.
       MimeMessage message = new MimeMessage(session);
       // Set From: поле заголовка заголовка.
       message.setFrom(new InternetAddress(from));
@@ -51,7 +55,9 @@ public class SendMail {
       // Теперь установите фактическое сообщение
       message.setText("Это актуальное сообщение");
       System.out.println("отправка...");
-      // Отправить сообщение
+//     Отправить сообщение
+//      Transport - абстрактный класс, который представляет собой спецификацию протокола передачи.
+//      Transport использует объект конкретного протокола передачи, чтобы отправить сообщение.
       Transport.send(message);
       System.out.println("Сообщение отправлено успешно....");
     } catch (MessagingException mex) {
