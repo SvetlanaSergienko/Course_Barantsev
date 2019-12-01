@@ -4,6 +4,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import java.util.Properties;
 
+// Прочитать и вывести все входящие
+
 public class ReadEmail {
   public static void main(String[] args) throws MessagingException {
     //Объект properties содержит параметры соединения
