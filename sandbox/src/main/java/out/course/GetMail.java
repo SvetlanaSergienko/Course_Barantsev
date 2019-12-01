@@ -1,82 +1,96 @@
 package out.course;
 
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
-import static out.course.EmailGet.prepareMassage;
+//Проверить что на почту пришло конктеное письмо от конкретной почты
 
 public class GetMail {
-  public static void main(String[] args) {
-    // Укажите адрес электронной почты получателя
-    String to = "***@mail.ru";
-    // Укажите адрес электронной почты отправителя
-    String from = "***@mail.ru";
-    // Упомяните адрес SMTP-сервера. Ниже SMTP-сервер Gmail используется для отправки электронной почты
-    String host = "smtp.mail.ru";
-    // Получить системные свойства properties
-    Properties properties = System.getProperties();
-    // Настройка почтового сервера
-    properties.put("mail.smtp.host", "true");
-    properties.put("mail.smtp.host", host);
-    properties.put("mail.smtp.port", "465");
-    properties.put("mail.smtp.auth", "true");
-    properties.put("mail.transport.protocol", "smtp");
-//    sll -протокол шифрования
-    properties.put("mail.smtp.ssl.enable", "true");
-    properties.put("mail.smtp.socketFactory.class",
-            "javax.net.ssl.SSLSocketFactory");
+  public static void main(String[] args) throws MessagingException {
+    
+    //Объект properties содержит параметры соединения
+    Properties properties = new Properties();
+    properties.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
-
-    // Получите объект Session .// и передайте имя пользователя и пароль
-    Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-      protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication("***@mail.ru", "***");
-      }
-    });
-    // Используется для устранения проблем SMTP
-    session.setDebug(true);
+    //Создаем соединение для чтения почтовых сообщений
+    Session session = Session.getDefaultInstance(properties);
+    //Это хранилище почтовых сообщений. По сути - это и есть почтовый ящик
+    Store store = null;
     try {
-      // Создайте объект MimeMessage по умолчанию.
-      MimeMessage message = new MimeMessage(session);
-      // Set From: поле заголовка заголовка.
-      message.setFrom(new InternetAddress(from));
-      // Set To: поле заголовка заголовка.
-      message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-      // Set Subject: поле заголовка
-      message.setSubject("Это тема!");
-      // Теперь установите фактическое сообщение
-      message.setText("Это актуальное сообщение");
-      System.out.println("Настройки содержимого письма сделаны");
-    } catch (MessagingException mex) {
-      mex.printStackTrace();
-    }
-
-    String recipient;
-    Message message = prepareMassage(session, to, recipient);
-
-    private static Message prepareMassage(Session session, String from, String recipient) {
+      //Для чтения почтовых сообщений используем протокол IMAP.
+      store = session.getStore("imap");
+      //Подключаемся к почтовому ящику
+      store.connect("imap.mail.ru", 993, "***@mail.ru", "***");
+      //Это папка, которую будем читать
+      Folder inbox = null;
       try {
-        Message message = new MimeMessage(session);
-//                message.setFrom(new InternetAddress(to));
-        message.setFrom(new InternetAddress(from));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-//                message.setSubject("Создание счета по договору 61347500137/S152");
-        message.setSubject("Создание счета по договору 61347500137/S152");
-        return message;
-      } catch (Exception ex) {
-        Logger.getLogger(EmailGet.class.getName()).log(Level.SEVERE,null, ex);
-      }
-      return null;
-    }
+        //Читаем папку "Входящие сообщения"
+        inbox = store.getFolder("INBOX");
+        //Будем только читать сообщение, не меняя их
+        inbox.open(Folder.READ_ONLY);
 
+        //Получаем количество сообщения в папке
+        int count = inbox.getMessageCount();
+        //Вытаскиваем все сообщения с первого по последний
+        Message[] messages = inbox.getMessages(1, count);
+        //Циклом пробегаемся по всем сообщениям
+//        for (Message message : messages) {
+//          //От кого
+//          String from = ((InternetAddress) message.getFrom()[0]).getAddress();
+//          System.out.println("FROM: " + from);
+//          //Тема письма
+//          System.out.println("SUBJECT: " + message.getSubject());
+//        }
+
+        String from = "***@mail.ru";
+        String subject = "Это тема!";
+
+//        for (int i=0; i<messages.length; i++) {
+          for (int i=0; true; i++) {
+          String from2 = ((InternetAddress) messages[i].getFrom()[0]).getAddress();
+          String subject2 = messages[i].getSubject();
+//         equals()- Для сравнения значения строк
+//         equalsIgnoreCase() - Если важно содержание и последовательность конкретных символов, а не их капслог (адреса)
+          if(subject == subject2.intern()&&from==from2.intern()) {
+//          System.out.println(subject == subject2.intern());
+            System.out.println("Письмо пришло");
+          System.out.println(i + ": "
+                  + from2 + " " + subject2);
+          return;
+          }
+        }
+//        int j=0;
+//       while (false){
+//         for (int i=0; i<messages.length; i++) {
+//          for (int i=0; true; i++) {
+//          String from2 = ((InternetAddress) messages[i].getFrom()[0]).getAddress();
+//          String subject2 = messages[i].getSubject();
+////         equals()- Для сравнения значения строк
+////         equalsIgnoreCase() - Если важно содержание и последовательность конкретных символов, а не их капслог (адреса)
+//          if(subject == subject2.intern()&&from==from2.intern()) {
+////          System.out.println(subject == subject2.intern());
+//            System.out.println("Письмо пришло");
+//          System.out.println(i + ": "
+//                  + from2 + " " + subject2);
+//          }
+//        }
+
+
+
+//       }
+      } finally {
+        if (inbox != null) {
+          //Не забываем закрыть собой папку сообщений.
+          inbox.close(false);
+        }
+      }
+
+    } finally {
+      if (store != null) {
+        //И сам почтовый ящик тоже закрываем
+        store.close();
+      }
+    }
   }
 }
-
