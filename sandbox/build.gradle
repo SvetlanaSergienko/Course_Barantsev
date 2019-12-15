@@ -24,6 +24,10 @@ dependencies {
     // The production code uses Guava
     compile 'com.google.guava:guava:20.0'
     compile 'org.testng:testng:7.0.0'
+    
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
