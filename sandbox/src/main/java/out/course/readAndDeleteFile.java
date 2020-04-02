@@ -38,7 +38,9 @@ public class readAndDeleteFile {
 
 //    путь в файлу. System.getProperty("user.dir") - ссылка на то где лежит проект
     requestTemplatePath = System.getProperty("user.dir") + "\\sandbox\\src\\resources\\xml\\createReserve.xml";
-
+    //   если нужно затерепь предыдущию парку
+//    requestTemplatePath = System.getProperty("user.dir") + "/../Course_Barantsev/sandbox/src/resources/xml/createReserve.xml";
+//    System.out.println(">>>>>" + requestTemplatePath);
 
     try {
 //    Вариант 1 построчно считать каждую строчку
