@@ -1,11 +1,10 @@
 package ru.stqa.pft.sandbox;
 
-import javax.xml.crypto.Data;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-public class DateTime {
+public class DateTime1 {
 
   public static void main(String[] args) throws InterruptedException {
 
@@ -30,7 +29,7 @@ public class DateTime {
     System.out.println(date.after(date2));
     System.out.println(date.equals(date2));
 
-    DateTime dateNew = new DateTime();
+    DateTime1 dateNew = new DateTime1();
     int differenceHours = 3;
 
 

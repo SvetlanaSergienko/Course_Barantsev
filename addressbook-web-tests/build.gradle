@@ -31,12 +31,6 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-
-//для работы с датой и временем
-//    api 'joda-time:joda-time:2.9.9'
-    // https://mvnrepository.com/artifact/joda-time/joda-time
-    compile group: 'joda-time', name: 'joda-time', version: '2.10.6'
-
 }
 
 // Define the main class for the application

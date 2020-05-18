@@ -128,8 +128,8 @@ public class CalendarDate {
 //    }
 
 ///    public void addToDateTimeHours(String variableName, String dateValue, int differenceHours) {
-//      DateTime dateSrc = DateTime.parse(TestVariables.replaceAllVariables(dateValue), DEFAULT_DATE_TIME_FORMATTER);
-//      DateTime newDate = dateSrc.plusHours(differenceHours);
+//      DateTime1 dateSrc = DateTime1.parse(TestVariables.replaceAllVariables(dateValue), DEFAULT_DATE_TIME_FORMATTER);
+//      DateTime1 newDate = dateSrc.plusHours(differenceHours);
 //      String newDateText = newDate.toString(DEFAULT_DATE_TIME_FORMATTER);
 //      TestVariables.saveVariable(variableName, newDateText);
 //    }
